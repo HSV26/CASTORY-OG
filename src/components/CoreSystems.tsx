@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, BookOpen, Target, Bot, Check, Send, PhoneCall, Sparkles, Clock, Calendar } from 'lucide-react';
+import aiDashboardImg from '../assets/images/ai_automation_dashboard_1793717821145.jpg';
 
 interface CoreSystemsProps {
   onOpenConsultation: () => void;
@@ -231,7 +232,7 @@ export const CoreSystems: React.FC<CoreSystemsProps> = ({ onOpenConsultation }) 
               {/* Generated image preview */}
               <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md">
                 <img
-                  src="/images/ai_automation_dashboard_1793717821145.jpg"
+                  src={aiDashboardImg}
                   alt="AI automation and local SEO performance metrics on executive desk"
                   referrerPolicy="no-referrer"
                   className="w-full h-48 object-cover"

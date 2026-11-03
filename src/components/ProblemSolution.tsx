@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle, Search, ShieldAlert, CheckCircle, ArrowRight, Sparkles, MessageSquare } from 'lucide-react';
+import caExpertImg from '../assets/images/ca_expert_meeting_1793717820687.jpg';
 
 interface ProblemSolutionProps {
   onOpenConsultation: () => void;
@@ -135,7 +136,7 @@ export const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onOpenConsulta
             {/* Visual Image / Showcase */}
             <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-200 bg-white relative group shadow-lg">
               <img
-                src="/images/ca_expert_meeting_1793717820687.jpg"
+                src={caExpertImg}
                 alt="Chartered accountant discussing strategic advisory with client"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover min-h-[340px] max-h-[460px] lg:max-h-full"

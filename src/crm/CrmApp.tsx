@@ -43,6 +43,7 @@ const CrmAppContent: React.FC<CrmAppProps> = ({ onBackToWebsite }) => {
   const [isDbConfigOpen, setIsDbConfigOpen] = useState(false);
   const [leadForTierSelect, setLeadForTierSelect] = useState<Lead | null>(null);
   const [isTierSelectOpen, setIsTierSelectOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Sync leads from storage on mount
   useEffect(() => {
@@ -190,8 +191,6 @@ const CrmAppContent: React.FC<CrmAppProps> = ({ onBackToWebsite }) => {
   const existingClientsCount = leads.filter(
     (l) => l.status === 'Closed/Won' || (l.onboarding && l.onboarding.phases?.length)
   ).length;
-
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-slate-50 flex font-['Poppins',sans-serif] text-slate-800 antialiased selection:bg-blue-600/15">
