@@ -191,6 +191,8 @@ const CrmAppContent: React.FC<CrmAppProps> = ({ onBackToWebsite }) => {
     (l) => l.status === 'Closed/Won' || (l.onboarding && l.onboarding.phases?.length)
   ).length;
 
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 flex font-['Poppins',sans-serif] text-slate-800 antialiased selection:bg-blue-600/15">
       {/* Sidebar Navigation */}
@@ -202,11 +204,14 @@ const CrmAppContent: React.FC<CrmAppProps> = ({ onBackToWebsite }) => {
           } else {
             setCurrentTab(tab);
           }
+          setIsMobileSidebarOpen(false);
         }}
         pendingFollowupsCount={stats.pendingFollowupsToday}
         staleProposalsCount={staleCount}
         existingClientsCount={existingClientsCount}
         onBackToWebsite={onBackToWebsite}
+        isOpen={isMobileSidebarOpen}
+        onClose={() => setIsMobileSidebarOpen(false)}
       />
 
       {/* Main Content Pane */}
@@ -216,6 +221,7 @@ const CrmAppContent: React.FC<CrmAppProps> = ({ onBackToWebsite }) => {
           onOpenNewLead={() => setIsNewLeadOpen(true)}
           onOpenDbConfig={() => setIsDbConfigOpen(true)}
           onBackToWebsite={onBackToWebsite}
+          onToggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
         />
 
         <main className="flex-1 pb-12">

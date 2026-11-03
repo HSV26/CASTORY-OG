@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCrmAuth } from '../authContext';
-import { Plus, Database, LogOut, ExternalLink, ShieldCheck, User } from 'lucide-react';
+import { Plus, Database, LogOut, ExternalLink, ShieldCheck, Menu } from 'lucide-react';
 import { UserRole } from '../types';
 
 interface CrmHeaderProps {
@@ -8,6 +8,7 @@ interface CrmHeaderProps {
   onOpenNewLead: () => void;
   onOpenDbConfig: () => void;
   onBackToWebsite: () => void;
+  onToggleMobileSidebar: () => void;
 }
 
 export const CrmHeader: React.FC<CrmHeaderProps> = ({
@@ -15,6 +16,7 @@ export const CrmHeader: React.FC<CrmHeaderProps> = ({
   onOpenNewLead,
   onOpenDbConfig,
   onBackToWebsite,
+  onToggleMobileSidebar,
 }) => {
   const { user, logout, switchRole } = useCrmAuth();
 
@@ -22,6 +24,10 @@ export const CrmHeader: React.FC<CrmHeaderProps> = ({
     switch (currentTab) {
       case 'overview':
         return 'Executive Overview & Target Hub';
+      case 'existing_clients':
+        return 'Existing Clients SOPs';
+      case 'goals':
+        return 'Practice Goals & Targets';
       case 'kanban':
         return 'Interactive Pipeline Kanban';
       case 'table':
@@ -36,14 +42,23 @@ export const CrmHeader: React.FC<CrmHeaderProps> = ({
   };
 
   return (
-    <header className="h-18 bg-white border-b border-slate-200 px-6 sm:px-8 flex items-center justify-between gap-4 sticky top-0 z-30 shadow-2xs">
-      {/* Breadcrumb Trail */}
-      <div className="flex items-center gap-2 text-xs">
-        <span className="font-semibold text-slate-400">CAstory CRM</span>
-        <span className="text-slate-300">/</span>
-        <span className="font-bold text-[#0A192F] text-sm">
-          {getBreadcrumbTitle()}
-        </span>
+    <header className="h-18 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between gap-3 sticky top-0 z-30 shadow-2xs">
+      {/* Breadcrumb Trail & Mobile Menu Toggle */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onToggleMobileSidebar}
+          className="md:hidden p-2 text-slate-700 hover:text-[#0A192F] rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+          aria-label="Open mobile navigation"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        <div className="flex items-center gap-2 text-xs truncate">
+          <span className="font-semibold text-slate-400 hidden sm:inline">CAstory CRM</span>
+          <span className="text-slate-300 hidden sm:inline">/</span>
+          <span className="font-bold text-[#0A192F] text-xs sm:text-sm truncate">
+            {getBreadcrumbTitle()}
+          </span>
+        </div>
       </div>
 
       {/* Action Zone */}

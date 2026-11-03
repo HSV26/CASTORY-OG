@@ -18,6 +18,8 @@ interface CrmSidebarProps {
   staleProposalsCount: number;
   existingClientsCount: number;
   onBackToWebsite: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export const CrmSidebar: React.FC<CrmSidebarProps> = ({
@@ -27,6 +29,8 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({
   staleProposalsCount,
   existingClientsCount,
   onBackToWebsite,
+  isOpen,
+  onClose,
 }) => {
   const menuItems = [
     {
@@ -77,7 +81,18 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-2xs z-40">
+    <>
+      {/* Backdrop for mobile */}
+      {isOpen && (
+        <div 
+          onClick={onClose}
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-40 md:hidden" 
+        />
+      )}
+
+      <aside className={`w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen fixed md:sticky top-0 z-50 shadow-2xl md:shadow-2xs transition-transform duration-300 ${
+        isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+      }`}>
       <div className="p-5 space-y-6">
         {/* Brand */}
         <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
@@ -153,5 +168,6 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({
         </div>
       </div>
     </aside>
+    </>
   );
 };

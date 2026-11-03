@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Send, CheckCircle2, ShieldCheck, ArrowRight, UserCheck } from 'lucide-react';
 import { PracticeType, ConsultationFormData } from '../types';
 import { addCrmLead } from '../crm/crmStorage';
+import { sanitizeObject } from '../utils/sanitize';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -34,12 +35,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
 
+    const cleanData = sanitizeObject(formData);
+
     // Save lead to localStorage and push directly into CRM
     try {
       const existingLeads = JSON.parse(localStorage.getItem('castory_inbound_leads') || '[]');
       const inboundRecord = {
         id: 'LEAD-' + Date.now(),
-        ...formData,
+        ...cleanData,
         submittedAt: new Date().toISOString(),
         forwardedToWhatsAppNumber: '+91-8104468397',
         status: 'Pending Partner Outreach',
@@ -47,18 +50,18 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
       localStorage.setItem('castory_inbound_leads', JSON.stringify([inboundRecord, ...existingLeads]));
 
       // Also add directly to CRM pipeline so it shows up in CRM immediately
-      const pkg = formData.selectedPackage || 'Growth Package (₹14,999/mo)';
+      const pkg = cleanData.selectedPackage || 'Growth Package (₹14,999/mo)';
       const isStarter = pkg.includes('Starter');
       const isPremium = pkg.includes('Premium');
       const monthlyValue = isStarter ? 7499 : isPremium ? 29999 : 14999;
 
       addCrmLead({
-        firmName: formData.practiceName || 'Inbound Practice',
-        contactPerson: formData.name || 'Practice Partner',
-        profession: formData.practiceType,
-        location: formData.city || 'Navi Mumbai',
-        phone: formData.phone,
-        email: formData.email || 'inbound@castory.in',
+        firmName: cleanData.practiceName || 'Inbound Practice',
+        contactPerson: cleanData.name || 'Practice Partner',
+        profession: cleanData.practiceType,
+        location: cleanData.city || 'Navi Mumbai',
+        phone: cleanData.phone,
+        email: cleanData.email || 'inbound@castory.in',
         status: 'New Lead',
         packageTier: pkg,
         monthlyValue,
