@@ -1,0 +1,6 @@
+{
+  "name": "CAstory - Digital Growth & AI Automation for CAs",
+  "description": "Compliance-safe performance marketing, local SEO, and AI automation built exclusively for Chartered Accountants, tax consultants, and financial advisors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
