@@ -135,7 +135,7 @@ export const ProblemSolution: React.FC<ProblemSolutionProps> = ({ onOpenConsulta
             {/* Visual Image / Showcase */}
             <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-200 bg-white relative group shadow-lg">
               <img
-                src="/src/assets/images/ca_expert_meeting_1793717820687.jpg"
+                src="/images/ca_expert_meeting_1793717820687.jpg"
                 alt="Chartered accountant discussing strategic advisory with client"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover min-h-[340px] max-h-[460px] lg:max-h-full"

@@ -15,6 +15,7 @@ import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { PracticeAuditModal } from './components/PracticeAuditModal';
 import { CrmApp } from './crm/CrmApp';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { MessageSquare } from 'lucide-react';
 
 export default function App() {
@@ -62,7 +63,11 @@ export default function App() {
   };
 
   if (currentView === 'crm') {
-    return <CrmApp onBackToWebsite={handleBackToWebsite} />;
+    return (
+      <ErrorBoundary onBackToWebsite={handleBackToWebsite}>
+        <CrmApp onBackToWebsite={handleBackToWebsite} />
+      </ErrorBoundary>
+    );
   }
 
   return (

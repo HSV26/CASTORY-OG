@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenConsultation, onOpenAudit }) =
               {/* Image */}
               <div className="aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden relative">
                 <img
-                  src="/src/assets/images/hero_ca_office_1793717819760.jpg"
+                  src="/images/hero_ca_office_1793717819760.jpg"
                   alt="Executive modern chartered accountant advisory office"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"

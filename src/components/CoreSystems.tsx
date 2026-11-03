@@ -231,7 +231,7 @@ export const CoreSystems: React.FC<CoreSystemsProps> = ({ onOpenConsultation }) 
               {/* Generated image preview */}
               <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md">
                 <img
-                  src="/src/assets/images/ai_automation_dashboard_1793717821145.jpg"
+                  src="/images/ai_automation_dashboard_1793717821145.jpg"
                   alt="AI automation and local SEO performance metrics on executive desk"
                   referrerPolicy="no-referrer"
                   className="w-full h-48 object-cover"
